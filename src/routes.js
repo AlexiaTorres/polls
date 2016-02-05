@@ -16,7 +16,7 @@ export default () => (
     <Route path="vote" component={SelectPollContainer} />
     <Route path="vote/:idPoll" component={PollVoteContainer} />
     <Route path="sign-in" component={SignInContainer} />
-    <IndexRoute component={SelectPollContainer}/>
+    <IndexRoute component={SignInContainer}/>
     <Redirect path="*" to="/vote" />
   </Route>
 );

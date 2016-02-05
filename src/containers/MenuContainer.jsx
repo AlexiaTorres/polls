@@ -22,27 +22,28 @@ class Menu extends Component {
       <nav className="navbar navbar-default">
         <div className="container-fluid">
           <div className="navbar-header">
+          { auth.authenticated ?
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
               <span className="sr-only">Toggle navigation</span>
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
-            </button>
+            </button> : null
+          }
             <Link className="navbar-brand" to="/">Poll App</Link>
           </div>
+            { auth.authenticated ?
           <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav">
-              { auth.authenticated ? <MenuItem href="/poll" { ...this.props }>My Polls</MenuItem> : null }
-              <MenuItem href="/vote" { ...this.props }>Vote</MenuItem>
+                <MenuItem href="/poll" { ...this.props }>My Polls</MenuItem>
+                <MenuItem href="/vote" { ...this.props }>Vote</MenuItem>
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <NotificationsContainer { ...this.props } />
-              { auth.authenticated ?
-                <li className="navbar-btn"><button className="btn" type="button" onClick={ () => this.handleSignOutClick() }>Sign Out</button></li> :
-                <MenuItem href="/sign-in" { ...this.props }>Sign In</MenuItem>
-              }
+                <li className="navbar-btn"><button className="btn" type="button" onClick={ () => this.handleSignOutClick() }>Sign Out</button></li>
             </ul>
-          </div>
+          </div> : null
+        }
         </div>
       </nav>
     );
