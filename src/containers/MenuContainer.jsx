@@ -40,7 +40,7 @@ class Menu extends Component {
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <NotificationsContainer { ...this.props } />
-                <li className="navbar-btn"><button className="btn" type="button" onClick={ () => this.handleSignOutClick() }>Sign Out</button></li>
+                <MenuItem href="/" { ...this.props }><button style={{border: 'none', background: 'none'}} onClick={ () => this.handleSignOutClick() }>Sign Out</button></MenuItem>
             </ul>
           </div> : null
         }
