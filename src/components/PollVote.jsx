@@ -31,6 +31,10 @@ export default class PollVote extends Component {
     this.props.voteEntry(idPoll, idEntry);
   }
 
+  handleUnvoteClick(idPoll, idEntry) {
+    this.props.unvoteEntry(idPoll, idEntry);
+  }
+
   totalVotes(entries) {
     return Object.keys(entries).reduce( (total, id) => total + entries[id].votes, 0 );
   }
@@ -65,6 +69,7 @@ export default class PollVote extends Component {
                     <li className="list-group-item" key={index}>
                       { entries[id].title }
                       <span onClick={ () => this.handleVoteClick(poll.id, id) } className="action-element glyphicon glyphicon-arrow-up"/>
+                      <span onClick={ () => this.handleUnvoteClick(poll.id, id) } className="action-element glyphicon glyphicon-arrow-down" style={{marginLeft: '4em'}}/>
                       <br/>
                       { this.createProgressBar(entries[id], total, index) }
                     </li>
@@ -84,7 +89,9 @@ export default class PollVote extends Component {
 PollVote.propTypes = {
   poll: PropTypes.object.isRequired,
   voteEntry: PropTypes.func.isRequired,
+  unvoteEntry: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
   registerListeners: PropTypes.func.isRequired,
-  unregisterListeners: PropTypes.func.isRequired
+  unregisterListeners: PropTypes.func.isRequired,
+  voted: PropTypes.bool
  };
