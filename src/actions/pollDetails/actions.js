@@ -55,7 +55,7 @@ export function voteEntry(idPoll, idEntry) {
   return (dispatch, getState) => {
     const { firebase } = getState();
     firebase.child(`polls/${idPoll}/entries/${idEntry}/votes`)
-      .transaction(votes => votes + 1, error => {
+      .transaction(votes => (votes === 0) ? votes + 1 : 1, error => {
         if (error) {
           console.error('ERROR @ updatePoll :', error); // eslint-disable-line no-console
           dispatch({
