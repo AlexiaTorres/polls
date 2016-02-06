@@ -66,11 +66,14 @@ export default class PollList extends Component {
     const contents = this.state.loading ?
       <Spinner /> :
       (
-        <ul className="list-group">
-            {
-              polls.map( (poll, index) =>  <PollItem key={index} poll={poll} onRemovePoll={removePoll} /> )
-            }
-         </ul>
+        <div>
+          <h2>My polls</h2>
+          <ul className="list-group">
+              {
+                polls.map( (poll, index) =>  <PollItem key={index} poll={poll} onRemovePoll={removePoll} /> )
+              }
+           </ul>
+         </div>
       );
 
     return (
@@ -78,7 +81,7 @@ export default class PollList extends Component {
         <div className="col-md-6">
           { contents }
           <div className="input-group">
-            <input type="text" className="form-control" placeholder="Pull Title" ref="title" onKeyDown={e => this.handleOnTitleKeyDown(e)} onChange={e => this.handleOnChangeTitle(e)}/>
+            <input type="text" className="form-control" placeholder="Poll Title" ref="title" onKeyDown={e => this.handleOnTitleKeyDown(e)} onChange={e => this.handleOnChangeTitle(e)}/>
             <span className="input-group-btn">
               <button disabled={this.state.addDisabled} className="btn btn-info" type="button" onClick={e => this.handleAddButtonClick(e)}><span className="glyphicon glyphicon-ok-sign" /></button>
             </span>
