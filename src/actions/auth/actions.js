@@ -5,9 +5,7 @@ function authenticate(provider) {
   return (dispatch, getState) => {
     const { firebase } = getState();
 
-    dispatch(pushState(null, '/'));
-
-    firebase.authWithOAuthPopup(provider, (error, authData) => {
+    firebase.authWithOAuthPopup(provider, function(error, authData = firebase.getAuth()) {
       if (error) {
         console.error('ERROR @ authWithOAuthPopup :', error); // eslint-disable-line no-console
       }
@@ -19,6 +17,7 @@ function authenticate(provider) {
             timestamp: Date.now()
           }
         });
+        dispatch(pushState(null, '/poll'));
       }
     });
   };
